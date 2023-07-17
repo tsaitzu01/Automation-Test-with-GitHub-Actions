@@ -3,7 +3,7 @@ import allure
 import logging
 import os
 from page_objects import CategoryPage
-from .test_data.product_detail import ProductDetail
+from db_query import DbQuery
 
 @allure.feature('Category Selection')
 @pytest.mark.parametrize('category', ['女裝', '男裝', '配件'])
@@ -18,7 +18,7 @@ def test_web_category(driver, db_connection, category):
     
     logging.info('Log: Start to get product list and verify')
     results = [product.text for product in category_page.get_product_list()]
-    expected = ProductDetail().get_product_by_category(db_connection, category)
+    expected = DbQuery().get_product_by_category(db_connection, category)
     
     assert expected == results, \
         f"Expected: {expected}, Actual: {results}" 

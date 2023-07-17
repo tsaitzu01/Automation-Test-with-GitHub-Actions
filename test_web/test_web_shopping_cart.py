@@ -1,9 +1,9 @@
 import allure
 import logging
-import os
 import random
+import os
 from page_objects import ShoppingCart, ProductPage, CategoryPage
-from .test_data.product_detail import ProductDetail
+from db_query import DbQuery
 
 def add_product_to_cart(driver, db_connection):
     driver.get(os.environ.get('DOMAIN'))
@@ -18,7 +18,7 @@ def add_product_to_cart(driver, db_connection):
 
     with allure.step("Select a color of the product"):
         random_color = random.choice(product_page.get_all_colors())
-        product_info['color'] = ProductDetail().get_color_by_color_code(db_connection, random_color.get_attribute('data_id')[-6:])
+        product_info['color'] = DbQuery().get_color_by_color_code(db_connection, random_color.get_attribute('data_id')[-6:])
         product_page.click_product_color(random_color)
 
     with allure.step("Select a size of the product"):
@@ -43,6 +43,7 @@ def add_product_to_cart(driver, db_connection):
 def test_shopping_cart_info(driver, db_connection):
 
     shopping_cart = ShoppingCart(driver)
+    product_page = ProductPage(driver)
     logging.info('Log: Start to verify shopping cart info')
     cart_info = []
     
@@ -64,6 +65,7 @@ def test_shopping_cart_info(driver, db_connection):
 def test_remove_product(driver, db_connection):
 
     shopping_cart = ShoppingCart(driver)
+    product_page = ProductPage(driver)
     logging.info('Log: Start to verify remove product from cart')
     cart_info = []
     
@@ -96,6 +98,7 @@ def test_remove_product(driver, db_connection):
 def test_edit_quantity(driver, db_connection):
 
     shopping_cart = ShoppingCart(driver)
+    product_page = ProductPage(driver)
     logging.info('Log: Start to verify edit quantity in cart')
     cart_info = []
 

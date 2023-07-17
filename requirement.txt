@@ -4,3 +4,6 @@ allure-pytest==2.13.2
 urllib3==1.26.6
 webdriver_manager==3.8.6
 pymysql==1.0.3
+pandas==2.0.2
+openpyxl==3.1.2
+pytest_xdist==3.3.1

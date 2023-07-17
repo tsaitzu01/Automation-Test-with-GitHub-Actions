@@ -60,3 +60,30 @@ def login(driver, request):
         login_page.input_email(email)
         login_page.input_password(password)
         login_page.click_login_btn()
+
+@pytest.fixture()
+def login_success(driver):
+
+    login_page = LoginPage(driver)
+    driver.get(os.environ.get('DOMAIN'))
+
+    worker_id = os.environ.get('PYTEST_XDIST_WORKER')
+    if worker_id == 'gw0':  # Worker 1
+        email = os.environ.get('EMAIL_WORKER1')
+        password = os.environ.get('PASSWORD_WORKER1')
+    elif worker_id == 'gw1':  # Worker 2
+        email = os.environ.get('EMAIL_WORKER2')
+        password = os.environ.get('PASSWORD_WORKER2')
+    else:
+        email = None
+
+    with allure.step("Member login successfully"):
+        login_page.click_profile_icon_btn()
+        login_page.input_email(email)
+        login_page.input_password(password)
+        login_page.click_login_btn()
+
+    with allure.step("Verify login success and alert message 'Login Success' should be shown"):
+        alert_msg = login_page.get_alert_message()
+        assert alert_msg == "Login Success", \
+            f"Actual: {alert_msg}"

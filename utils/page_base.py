@@ -42,6 +42,7 @@ class PageBase:
         logging.info("Log: Start to get alert message")
         self.wait.until(EC.alert_is_present())
         alert_message = self.driver.switch_to.alert.text
+        logging.info(f"Alert Message: {alert_message}")
         self.driver.switch_to.alert.accept()
         return alert_message
     

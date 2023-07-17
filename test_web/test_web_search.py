@@ -3,7 +3,7 @@ import allure
 import logging
 import os
 from page_objects import SearchPage
-from .test_data.product_detail import ProductDetail
+from db_query import DbQuery
 
 @allure.feature('Product Search Feature')
 @pytest.mark.parametrize('keyword', ['洋裝', '', 'Hello'])
@@ -19,7 +19,7 @@ def test_web_search(driver, db_connection, keyword):
 
     logging.info('Log: Start to get search results and verify')
     results = sorted([result.text for result in search_page.get_search_results()])
-    expected = sorted(ProductDetail().select_products_by_keyword(db_connection, keyword))
+    expected = sorted(DbQuery().select_products_by_keyword(db_connection, keyword))
 
     assert expected == results, \
         f"Expected: {expected}\nActual: {results}"
