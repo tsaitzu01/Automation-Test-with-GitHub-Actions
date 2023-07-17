@@ -2,7 +2,7 @@
 
 ## About this project
 1. This is an Automation Test Project for an e-commerce development project - Stylish (Owned by AppWorks School).
-   - System Requirement
+   - [System Requirement](https://docs.google.com/document/d/1TBzeYw5d7_tCm2sOBFECJRcBPvrPXgTrOVaCms6o3AM/edit)
    - Stylish Website: http://54.201.140.239/
 2. Included both Web UI Test and API Test.
 3. The Framework is PyTest and Selenium.
