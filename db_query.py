@@ -3,6 +3,14 @@ import json
 
 class DbQuery():
 
+    def get_all_product_titles(db_connection):
+        select_all = ("SELECT title FROM product ")
+
+        db_connection.execute(select_all)
+        results = db_connection.fetchall()
+        
+        return [item['title'] for item in results]
+    
     def get_all_product_ids(db_connection):
         select_all = ("SELECT id FROM product ")
 

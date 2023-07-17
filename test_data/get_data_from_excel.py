@@ -49,7 +49,11 @@ class GetDataFromExcel:
                 return value
     
         # Read Excel
-        df = pd.read_excel('test_data/Stylish_TestCase.xlsx', sheet_name = sheet_name)
+        if 'API' in sheet_name:
+            df = pd.read_excel('test_data/Stylish_TestCase.xlsx', sheet_name = sheet_name
+                               , dtype={'ColorIDs': str})
+        else:     
+            df = pd.read_excel('test_data/Stylish_TestCase.xlsx', sheet_name = sheet_name)
 
         # Fill na with ''
         df.fillna('', inplace = True)
@@ -58,17 +62,25 @@ class GetDataFromExcel:
         df = df.applymap(replace_chars)
 
         # Replace '全選' to a list with all colors
-        df['Colors'] = df['Colors'].apply(split_column_value)
-        df['Colors'] = df['Colors'].apply(update_select_all_value, args=[['白色', '亮綠', '淺灰', '淺棕', '淺藍', '深藍', '粉紅']])
+        if 'API' in sheet_name:
+            df['ColorIDs'] = df['ColorIDs'].apply(split_column_value)
+        else:
+            df['Colors'] = df['Colors'].apply(split_column_value)
+            df['Colors'] = df['Colors'].apply(update_select_all_value, args=[['白色', '亮綠', '淺灰', '淺棕', '淺藍', '深藍', '粉紅']])
 
         # Replace '全選' to a list with all sizes
         df['Sizes'] = df['Sizes'].apply(split_column_value)
         df['Sizes'] = df['Sizes'].apply(update_select_all_value, args=[['S', 'M', 'L', 'XL', 'F']])
         
         # Replace image to expected path
-        df['Main Image'] = df['Main Image'].apply(update_image_value, args=[(os.getcwd() + "/test_data/mainImage.jpg")])
-        df['Other Image 1'] = df['Other Image 1'].apply(update_image_value, args=[(os.getcwd() + "/test_data/otherImage0.jpg")])
-        df['Other Image 2'] = df['Other Image 2'].apply(update_image_value, args=[(os.getcwd() + "/test_data/otherImage1.jpg")])
+        if 'API' in sheet_name:
+            df['Main Image'] = df['Main Image'].apply(update_image_value, args=[("mainImage.jpg")])
+            df['Other Image 1'] = df['Other Image 1'].apply(update_image_value, args=[("otherImage0.jpg")])
+            df['Other Image 2'] = df['Other Image 2'].apply(update_image_value, args=[("otherImage1.jpg")])    
+        else:
+            df['Main Image'] = df['Main Image'].apply(update_image_value, args=[(os.getcwd() + "/test_data/mainImage.jpg")])
+            df['Other Image 1'] = df['Other Image 1'].apply(update_image_value, args=[(os.getcwd() + "/test_data/otherImage0.jpg")])
+            df['Other Image 2'] = df['Other Image 2'].apply(update_image_value, args=[(os.getcwd() + "/test_data/otherImage1.jpg")])
         
         data_list = df.to_dict('records')
         logging.info(data_list)

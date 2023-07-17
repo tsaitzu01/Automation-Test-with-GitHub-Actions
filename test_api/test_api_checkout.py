@@ -188,7 +188,7 @@ def test_get_order_without_order_id(session, login_success, order_id):
     with allure.step("Get order detail without ID"):
         order_get_api.send_get_order(order_id)
 
-    with allure.step("Verify response code is 404"):
+    with allure.step("Verify response code is 400"):
         status_code = order_get_api.get_status_code()
         assert status_code == 400, \
             f"When get order '{order_id}', the response code is {status_code}"

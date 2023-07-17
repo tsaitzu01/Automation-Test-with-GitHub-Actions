@@ -7,3 +7,5 @@ from .product_detail_api import ProductDetailAPI
 from .prime_api import PrimeAPI
 from .order_post_api import OrderPostAPI
 from .order_get_api import OrderGetAPI
+from .admin_add_product_api import CreateProductAPI
+from .admin_delete_product_api import DeleteProductAPI
