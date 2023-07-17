@@ -237,16 +237,16 @@ def test_get_product_by_id(session, db_connection):
         logging.info(f"Get products with product_id: {random_product_id}")
         product_detail_api.send_product_detail(random_product_id)
 
-        with allure.step("Verify response code is 200"):
-            status_code = product_detail_api.get_status_code()
-            assert status_code == 200, \
-                f"When get product by product id '{random_product_id}', the response code is {status_code}"
+    with allure.step("Verify response code is 200"):
+        status_code = product_detail_api.get_status_code()
+        assert status_code == 200, \
+            f"When get product by product id '{random_product_id}', the response code is {status_code}"
 
-        with allure.step(f"Verify the response body of product id '{random_product_id}'"):
-            random_product = product_detail_api.get_response_body()['data']
-            expected = DbQuery.get_product_info(db_connection, 'id', random_product_id)
-            assert random_product == expected, \
-                f"Actual: {random_product}, Expected: {expected}"
+    with allure.step(f"Verify the response body of product id '{random_product_id}'"):
+        random_product = product_detail_api.get_response_body()['data']
+        expected = DbQuery.get_product_info(db_connection, 'id', random_product_id)
+        assert random_product == expected, \
+            f"Actual: {random_product}, Expected: {expected}"
             
 @allure.feature('Product APIs: Detail')
 @allure.story('Get Product Without Given Product Id')

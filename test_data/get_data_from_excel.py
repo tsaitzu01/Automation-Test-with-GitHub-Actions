@@ -20,8 +20,6 @@ class GetDataFromExcel:
         df = df.applymap(replace_chars)
         data_list = df.to_dict('records')
 
-        logging.info(data_list)
-
         return data_list
     
     def read_create_product(sheet_name):
