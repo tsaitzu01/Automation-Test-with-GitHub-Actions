@@ -9,3 +9,4 @@ pip install -r requirement.txt
 # Execute test_sample.py and generate allure report
 # pytest ./test_web/test_web_$1.py
 pytest --reruns 3 --reruns-delay 2 ./test_web
+pytest --reruns 3 --reruns-delay 2 ./test_api
