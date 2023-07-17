@@ -32,3 +32,11 @@ class DbQuery():
         results = db_connection.fetchall()
 
         return results[0]['name']
+    
+    def get_user_profile(db_connection, email):
+        select_user_profile = ("SELECT id, provider, email, name, picture, access_token, access_expired, login_at FROM user "
+                               f"WHERE email = '{email}'")
+        db_connection.execute(select_user_profile)
+        results = db_connection.fetchall()
+
+        return results[0]

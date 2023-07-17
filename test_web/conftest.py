@@ -1,8 +1,6 @@
 import pytest
 import allure
 import os
-import pymysql
-import pymysql.cursors
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -29,23 +27,6 @@ def driver():
     
     allure.attach(driver.get_screenshot_as_png(), name='screenshot', attachment_type=allure.attachment_type.PNG)
     driver.quit()
-
-@pytest.fixture(scope = 'module')
-def db_connection():
-
-    cnx = pymysql.connect(
-        user = os.environ.get('DB_USERNAME'), 
-        password = os.environ.get('DB_PASSWORD'),
-        host = os.environ.get('DB_HOST'),
-        port = int(os.environ.get('DB_PORT')),
-        database = os.environ.get('DB_DATABASE')
-    )
-    cursor = cnx.cursor(pymysql.cursors.DictCursor)
-
-    yield cursor
-
-    cursor.close()
-    cnx.close()
 
 @pytest.fixture()
 def login(driver, request):
