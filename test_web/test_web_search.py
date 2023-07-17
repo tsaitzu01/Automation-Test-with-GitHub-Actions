@@ -2,7 +2,7 @@ import pytest
 import allure
 import logging
 import os
-from page_objects.search_page import SearchPage
+from page_objects import SearchPage
 from .test_data.product_detail import ProductDetail
 
 @allure.feature('Product Search Feature')

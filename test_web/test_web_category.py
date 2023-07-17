@@ -2,7 +2,7 @@ import pytest
 import allure
 import logging
 import os
-from page_objects.category_page import CategoryPage
+from page_objects import CategoryPage
 from .test_data.product_detail import ProductDetail
 
 @allure.feature('Category Selection')

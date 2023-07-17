@@ -13,7 +13,7 @@ class ProductDetail():
         db_connection.execute(select_category)
         results = db_connection.fetchall()
 
-        return [item for item, in results]
+        return [item['title'] for item in results]
 
     def select_products_by_keyword(self, db_connection, keyword):
         all_products_title = ("SELECT title FROM product "
@@ -22,4 +22,13 @@ class ProductDetail():
         db_connection.execute(all_products_title)
         results = db_connection.fetchall()
 
-        return [item for item, in results]
+        return [item['title'] for item in results]
+    
+    def get_color_by_color_code(self, db_connection, color_code):
+        select_color = ("SELECT name FROM color "
+                        f"WHERE code = '{color_code}'")
+        
+        db_connection.execute(select_color)
+        results = db_connection.fetchall()
+
+        return results[0][0]

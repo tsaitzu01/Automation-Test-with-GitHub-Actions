@@ -2,11 +2,13 @@ import pytest
 import allure
 import os
 import pymysql
+import pymysql.cursors
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
+from page_objects.login_page import LoginPage
 
 if 'ENV_FILE' in os.environ:
     env_file = os.environ['ENV_FILE']
@@ -38,9 +40,23 @@ def db_connection():
         port = int(os.environ.get('DB_PORT')),
         database = os.environ.get('DB_DATABASE')
     )
-    cursor = cnx.cursor()
+    cursor = cnx.cursor(pymysql.cursors.DictCursor)
 
     yield cursor
 
     cursor.close()
     cnx.close()
+
+@pytest.fixture()
+def login(driver, request):
+
+    login_page = LoginPage(driver)
+    driver.get(os.environ.get('DOMAIN'))
+    email = request.param.get("email")
+    password = request.param.get("password")
+
+    with allure.step("Member login"):
+        login_page.click_profile_icon_btn()
+        login_page.input_email(email)
+        login_page.input_password(password)
+        login_page.click_login_btn()

@@ -1,3 +1,5 @@
+import logging
+import random
 from selenium.webdriver.common.by import By
 from utils.page_base import PageBase
 
@@ -26,7 +28,6 @@ class CategoryPage(PageBase):
             except:
                 return current_product_list
             
-    def click_product(self, product_id):
-        self.find_element(
-            (By.XPATH, f"//div[@class='products']/child::a[@href='./product.html?id={product_id}']")
-        ).click()
+    def click_product(self, random_product):
+        logging.info(f'Log: Select {random_product.text}')
+        self.driver.execute_script("arguments[0].click();", random_product)
