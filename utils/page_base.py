@@ -1,3 +1,4 @@
+import logging
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
@@ -33,3 +34,16 @@ class PageBase:
 
     def scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+    def find_alert_element(self):
+        return self.wait.until(EC.alert_is_present())
+    
+    def get_alert_message(self):
+        logging.info("Start to get alert message")
+        self.find_alert_element()
+        return self.driver.switch_to.alert.text
+    
+    def accept_alert(self):
+        logging.info("Start to accept alert")
+        self.find_alert_element()
+        self.driver.switch_to.alert.accept()

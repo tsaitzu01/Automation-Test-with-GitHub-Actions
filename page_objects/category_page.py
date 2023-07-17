@@ -25,3 +25,8 @@ class CategoryPage(PageBase):
                 current_product_list = self.find_elements(self.product_list)
             except:
                 return current_product_list
+            
+    def click_product(self, product_id):
+        self.find_element(
+            (By.XPATH, f"//div[@class='products']/child::a[@href='./product.html?id={product_id}']")
+        ).click()
