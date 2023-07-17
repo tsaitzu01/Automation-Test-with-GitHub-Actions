@@ -12,15 +12,17 @@
 1. According to the description of the parameters in the .env-template file, modify it to a valid value.
 2. Start with pytest and followed by the filename of the test project
    - Normal Test
-   ```
-   pytest ./test_api
-   pytest ./test_api/test_api_product.py
-   ```
+      ```
+      pytest ./test_api
+      ```
+      ```
+      pytest ./test_api/test_api_product.py
+      ```
    - Parallel Test
-   ```
-   pytest -n 2 ./test_api
-   ```
+      ```
+      pytest -n 2 ./test_api
+      ```
    - Parallel Test with Rerun
-   ```
-   pytest -n 2 --reruns 3 --reruns-delay 2 ./test_api
-   ```
+      ```
+      pytest -n 2 --reruns 3 --reruns-delay 2 ./test_api
+      ```
