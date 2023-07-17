@@ -75,7 +75,8 @@ def login_success(driver):
         email = os.environ.get('EMAIL_WORKER2')
         password = os.environ.get('PASSWORD_WORKER2')
     else:
-        email = None
+        email = os.environ.get('EMAIL')
+        password = os.environ.get('PASSWORD')
 
     with allure.step("Member login successfully"):
         login_page.click_profile_icon_btn()

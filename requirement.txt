@@ -7,3 +7,5 @@ pymysql==1.0.3
 pandas==2.0.2
 openpyxl==3.1.2
 pytest_xdist==3.3.1
+hypothesis==6.77.0
+pytest_rerunfailures==11.1.2

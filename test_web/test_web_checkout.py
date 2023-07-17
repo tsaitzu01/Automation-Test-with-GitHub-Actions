@@ -60,11 +60,10 @@ def test_checkout_with_empty_cart(driver, login_success):
         
 @allure.feature('Checkout')
 @allure.step('Checkout with invalid values')
-@pytest.mark.parametrize('test_data', GetDataFromExcel.read_check_with_invalid_value('Checkout with Invalid Value'))
+@pytest.mark.parametrize('test_data', GetDataFromExcel.read_checkout_value('Checkout with Invalid Value'))
 def test_checkout_with_invalid_values(driver, db_connection, login_success, test_data):
 
     shopping_cart = ShoppingCart(driver)
-    product_page = ProductPage(driver)
     logging.info('Log: Start to checkout with invalid values')
 
     with allure.step("Add product to shopping cart"):
@@ -83,11 +82,10 @@ def test_checkout_with_invalid_values(driver, db_connection, login_success, test
             
 @allure.feature('Checkout')
 @allure.step('Checkout with valid values')
-@pytest.mark.parametrize('test_data', GetDataFromExcel.read_check_with_invalid_value('Checkout with Valid Value'))
+@pytest.mark.parametrize('test_data', GetDataFromExcel.read_checkout_value('Checkout with Valid Value'))
 def test_checkout_with_valid_values(driver, db_connection, login_success, test_data):
 
     shopping_cart = ShoppingCart(driver)
-    product_page = ProductPage(driver)
     thankyou_page = ThankyouPage(driver)
     logging.info('Log: Start to checkout with valid values')
 
