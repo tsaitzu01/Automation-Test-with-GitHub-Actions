@@ -8,6 +8,9 @@
 2. Included both Web UI Test and API Test.
 3. The Framework is PyTest and Selenium.
 4. Incorporated parallel test execution to improve efficiency
+5. Project Structure
+   <img width="1440" alt="project_structure" src="https://github.com/tsaitzu01/Automation-Test-Program-Project/assets/34716622/84b42bfb-7d37-4c4c-9ece-c43a5a54ca06">
+
 
 ## How to execute this automation test
 Please follow the steps below:
