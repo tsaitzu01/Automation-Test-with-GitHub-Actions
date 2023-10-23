@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+lib/
+bin/
+include/
+
+# Environments
+.env
+pyvenv.cfg
+
+# Unit test / coverage reports
+allure-results/
+.pytest_cache/

@@ -1,0 +1,11 @@
+pytest==7.3.1
+selenium==4.9.1
+allure-pytest==2.13.2
+urllib3==1.26.6
+webdriver_manager==3.8.6
+pymysql==1.0.3
+pandas==2.0.2
+openpyxl==3.1.2
+pytest_xdist==3.3.1
+hypothesis==6.77.0
+pytest_rerunfailures==11.1.2
