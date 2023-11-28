@@ -22,11 +22,12 @@ jobs:
 
     - name: Load JSON secret into environment variables
       run: |
-        echo "Secrets.ENV_FILE content: ${{ secrets.ENV_FILE }}"
         echo "${{ secrets.ENV_FILE }}" | tr -d ' ' > secret.json
-        env_vars=$(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' secret.json)
-        echo "Environment variables content: $env_vars"
-        echo "$env_vars" > .env
+        while IFS= read -r line; do
+          key=$(echo "$line" | jq -r '.key')
+          value=$(echo "$line" | jq -r '.value')
+          echo "$key=$value" >> .env
+        done < secret.json
 
     - name: Show .env content
       run: cat .env
