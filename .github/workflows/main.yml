@@ -23,6 +23,7 @@ jobs:
     - name: Run tests with pytest
       run: |
         pytest ./test_api/test_api_login.py
+      env: ${{ env }}
 
     - name: Collect Logs
       id: collect-logs
