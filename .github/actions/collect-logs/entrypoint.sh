@@ -4,5 +4,4 @@
 mkdir -p /github/workspace/logs
 
 # Copy the entire workspace to the logs directory excluding the logs directory
-shopt -s extglob
-cp -R /github/workspace/!(logs) /github/workspace/logs
+find /github/workspace -mindepth 1 -maxdepth 1 -name logs -prune -o -exec cp -R '{}' /github/workspace/logs \;
