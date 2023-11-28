@@ -20,6 +20,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirement.txt
 
+    - name: Load JSON secret into environment variables
+      run: |
+        echo "${{ secrets.env_file }}" > secret.json
+        env_vars=$(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' secret.json)
+        echo "$env_vars" > .env
+
+    - name: Show .env content
+      run: cat .env
+
     - name: Run tests with pytest
       run: |
         pytest ./test_api/test_api_login.py
