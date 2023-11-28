@@ -30,12 +30,13 @@ jobs:
       run: |
         pytest ./test_api/test_api_login.py
 
-    - name: Collect Logs
-      id: collect-logs
-      uses: ./.github/actions/collect-logs
+    # - name: Collect Logs
+    #   id: collect-logs
+    #   uses: ./.github/actions/collect-logs
 
     - name: Upload Logs
       uses: actions/upload-artifact@v2
       with:
         name: workflow-logs
-        path: ${{ steps.collect-logs.outputs.logs-path }}
+        path: ./allure-results
+        # path: ${{ steps.collect-logs.outputs.logs-path }}
