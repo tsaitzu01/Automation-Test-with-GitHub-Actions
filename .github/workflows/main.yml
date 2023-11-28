@@ -20,11 +20,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirement.txt
 
-    - name: Run tests with pytest
+    - name: Load JSON secrets into environment variables
       uses: oNaiPs/secrets-to-env-action@v1
       with:
           secrets: ${{ toJSON(secrets) }}
-    - run: |
+    
+    - name: Run tests with pytest
+      run: |
         pytest ./test_api/test_api_login.py
 
     - name: Collect Logs
