@@ -21,7 +21,7 @@ jobs:
         pip install -r requirement.txt
 
     - name: Load .env content into environment variables
-      run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
+      run: echo "${{ secrets.ENV_FILE }}" > .env
 
     - name: Show .env content
       run: cat .env
