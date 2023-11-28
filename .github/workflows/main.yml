@@ -20,10 +20,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirement.txt
 
-    - name: Load JSON secrets into environment variables
-      uses: oNaiPs/secrets-to-env-action@v1
+    - name: Generate .env file from github secrets
+      uses: shine1594/secrets-to-env-action@master
       with:
-          secrets: ${{ toJSON(secrets) }}
+        secrets: ${{ toJSON(secrets) }}
+        secrets_env: all
     
     - name: Run tests with pytest
       run: |
