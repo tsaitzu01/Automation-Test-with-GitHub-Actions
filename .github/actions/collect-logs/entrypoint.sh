@@ -5,3 +5,6 @@ mkdir -p /github/workspace/logs
 
 # Copy the entire workspace to the logs directory excluding the logs directory
 find /github/workspace -mindepth 1 -maxdepth 1 -name logs -prune -o -exec cp -R '{}' /github/workspace/logs \;
+
+# Output logs-path value
+echo "::set-output name=logs-path::/github/workspace/logs"
