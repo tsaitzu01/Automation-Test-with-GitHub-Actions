@@ -38,4 +38,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: workflow-logs
-        path: ${{ steps.collect-logs.outputs.logs-path }}
+        path: /github/workspace/logs
