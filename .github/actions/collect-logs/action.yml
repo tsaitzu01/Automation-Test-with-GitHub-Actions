@@ -6,9 +6,7 @@ inputs: {}
 outputs:
   logs-path:
     description: 'Path to the collected logs'
-    required: true
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  entrypoint: /entrypoint.sh
