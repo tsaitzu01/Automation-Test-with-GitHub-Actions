@@ -20,11 +20,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirement.txt
 
-    - name: Generate .env file from github secrets
-      uses: shine1594/secrets-to-env-action@master
-      with:
-        secrets: ${{ toJSON(secrets) }}
-        secrets_env: all
+    - name: Load .env content into environment variables
+      run: echo "${{ secrets.ENV_FILE_CONTENT }}" > .env
+
+    - name: Show .env content
+      run: cat .env
     
     - name: Run tests with pytest
       run: |
