@@ -23,12 +23,15 @@ jobs:
     - name: Load JSON secret into environment variables
       run: |
         echo "${{ secrets.ENV_FILE }}" | tr -d ' ' > secret.json
+        echo "Creating .env file..."
+        echo "# Automatically generated .env file" > .env
         while IFS= read -r line; do
           key=$(echo "$line" | jq -r '.key')
           value=$(echo "$line" | jq -r '.value')
           echo "$key=$value" >> .env
         done < secret.json
-
+        echo ".env file created successfully."
+        
     - name: Show .env content
       run: cat .env
 
