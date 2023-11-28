@@ -1,0 +1,13 @@
+name: 'Collect Logs'
+description: 'Collect logs from pytest and copy to a directory'
+
+inputs: {}
+
+outputs:
+  logs-path:
+    description: 'Path to the collected logs'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
