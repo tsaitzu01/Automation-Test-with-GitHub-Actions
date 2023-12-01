@@ -1,6 +1,10 @@
 name: Python Tests
 
 on: 
+  push:
+    branches:
+      - main
+
 
 jobs:
   test:
