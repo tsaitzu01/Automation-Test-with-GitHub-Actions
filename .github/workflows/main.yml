@@ -35,8 +35,8 @@ jobs:
     - name: Load .env content into environment variables
       run: echo "${{ secrets.ENV_FILE }}" > .env
 
-    - name: Show .env content
-      run: cat .env
+    # - name: Show .env content
+    #   run: cat .env
     
     - name: Run tests with pytest
       run: |
