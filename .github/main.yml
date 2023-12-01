@@ -4,14 +4,7 @@ name: Python Tests
 
 on: 
   push:
-    branches:
-      - master
-      - dev
-      
-  pull_request:
-    branches:
-      - master
-      - dev
+    branches: ["dev"]
 
   schedule:
     - cron: '0 5 * * *'
