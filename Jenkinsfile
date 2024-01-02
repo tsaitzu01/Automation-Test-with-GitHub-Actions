@@ -23,6 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 // script {
+                    sh 'pip3 install pytest'   
                     sh 'python3 -m pytest ./test_api/test_api_login.py'
                 // }
             }
