@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         // set up your jenkins credentials
-        ENV = credentials('api-env') 
+        ENV_FILE = credentials('api-env') 
     }
 
 
