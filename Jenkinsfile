@@ -16,8 +16,8 @@ pipeline {
         // set up your stages
         stage('Set up env'){
           steps{
-            sh 'python3 -m pip install --upgrade pip'
-            sh 'pip3 install requirment.txt'
+            sh 'python -m pip install --upgrade pip'
+            sh 'pip install requirment.txt'
           }
         }
 
