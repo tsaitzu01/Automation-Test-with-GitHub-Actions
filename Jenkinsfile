@@ -1,0 +1,29 @@
+pipeline {
+    agent any 
+    triggers {
+        // 看要用定時 trigger 還是用 pr trigger
+        cron('0 11 11 * *', false, 'Asia/Taipei')
+    }
+
+    environment {
+        // set up your jenkins credentials
+        ENV = credentials('ENV') 
+    }
+
+
+    stages {
+        // set up your stages
+        stage('Set up env'){
+          steps{
+            python -m pip install --upgrade pip
+            pip install -r requirement.txt 
+          }
+        }
+
+        stage('Run Test'){
+          steps{
+            python -m pytest ./test_api/test_api_login.py
+          }
+        }
+    }
+}
