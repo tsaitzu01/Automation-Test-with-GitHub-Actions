@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     // sh 'python3 -m pip install --upgrade pip'
-                    sh 'pip3 install -r requirement.txt'
+                    sh 'pip install -r requirement.txt'
                 }
             }
         }
