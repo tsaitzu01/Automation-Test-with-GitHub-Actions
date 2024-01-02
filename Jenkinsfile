@@ -3,7 +3,7 @@ pipeline {
     triggers {
         // 看要用定時 trigger 還是用 pr trigger
         // cron('0 11 11 * *', false, 'Asia/Taipei')
-        cron(spec: '0 11 11 * *', timezone: 'Asia/Taipei')
+        cron('0 11 11 * *')
     }
 
     environment {
