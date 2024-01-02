@@ -15,14 +15,13 @@ pipeline {
         // set up your stages
         stage('Set up env'){
           steps{
-            python -m pip install --upgrade pip
-            pip install -r requirement.txt 
+            pip3 install --upgrade pip
           }
         }
 
         stage('Run Test'){
           steps{
-            python -m pytest ./test_api/test_api_login.py
+            python3 -m pytest ./test_api/test_api_login.py
           }
         }
     }
