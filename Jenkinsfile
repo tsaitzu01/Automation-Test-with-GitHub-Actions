@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 // script {
-                    sh 'pip3 install --user pytest'   
+                    sh 'pip3 install --user -r requirement.txt'   
                     sh 'python3 -m pytest ./test_api/test_api_login.py'
                 // }
             }
