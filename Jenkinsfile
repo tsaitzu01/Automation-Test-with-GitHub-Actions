@@ -27,6 +27,7 @@ pipeline {
                     sh 'pip3 install --user pymysql'
                     sh 'pip3 install --user allure-pytest==2.13.2'
                     sh 'pip3 install --user requests'
+                    sh 'pip3 install --user dotenv'
                     sh 'python3 -m pytest ./test_api/test_api_login.py'
                 // }
             }
