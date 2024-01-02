@@ -22,9 +22,9 @@ pipeline {
         // }
         stage('Test') {
             steps {
-                script {
+                // script {
                     sh 'python3 -m pytest ./test_api/test_api_login.py'
-                }
+                // }
             }
         }
     }
