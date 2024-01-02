@@ -11,23 +11,19 @@ pipeline {
         ENV_FILE = credentials('ENV_FILE') 
     }
 
-
     stages {
-        // set up your stages
-        stages {
-            stage('Set up env') {
-                steps {
-                    script {
-                        sh 'python3 -m pip install --upgrade pip'
-                        sh 'pip3 install -r requirement.txt'
-                    }
+        stage('Set up env') {
+            steps {
+                script {
+                    sh 'python3 -m pip install --upgrade pip'
+                    sh 'pip3 install -r requirement.txt'
                 }
             }
-            stage('Test') {
-                steps {
-                    script {
-                        sh 'python3 -m pytest ./test_api/test_api_login.py'
-                    }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh 'python3 -m pytest ./test_api/test_api_login.py'
                 }
             }
         }
